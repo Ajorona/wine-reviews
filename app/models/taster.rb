@@ -1,0 +1,2 @@
+class Taster < ApplicationRecord
+end
