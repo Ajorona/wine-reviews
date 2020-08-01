@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_060203) do
   end
 
   create_table "designations", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
+    t.string "name", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "wineries_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_060203) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
+    t.string "name", limit: 256, null: false
     t.bigint "parent_location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,20 +54,20 @@ ActiveRecord::Schema.define(version: 2020_07_22_060203) do
   end
 
   create_table "tasters", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
-    t.string "twitter", limit: 32
+    t.string "name", limit: 256, null: false
+    t.string "twitter", limit: 256
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "varieties", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
+    t.string "name", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "wineries", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
+    t.string "name", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "locations_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_07_22_060203) do
   end
 
   create_table "wines", force: :cascade do |t|
-    t.string "name", limit: 64, null: false
+    t.string "name", limit: 256, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "wineries_id"
