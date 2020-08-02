@@ -1,0 +1,81 @@
+{
+  "dynamic": "strict",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "wine": {
+      "type": "text",
+      "analyzer": "standard_asciifolding",
+      "fields": {
+        "ngram": {
+          "type": "text",
+          "analyzer": "ngram_analyzer"
+        }
+      }
+    },
+    "wine_id": {
+      "type": "integer"
+    },
+    "winery": {
+      "type": "text",
+      "analyzer": "standard_asciifolding",
+      "fields": {
+        "ngram": {
+          "type": "text",
+          "analyzer": "ngram_analyzer"
+        }
+      }
+    },
+    "winery_id": {
+      "type": "integer"
+    },
+    "reviewer": {
+      "type": "text",
+      "analyzer": "standard_asciifolding"
+    },
+    "reviewer_id": {
+      "type": "integer"
+    },
+    "variety": {
+      "type": "text",
+      "analyzer": "standard_asciifolding",
+      "fields": {
+        "ngram": {
+          "type": "text",
+          "analyzer": "ngram_analyzer"
+        }
+      }
+    },
+    "variety_id": {
+      "type": "integer"
+    },
+    "subregion": {
+      "type": "text",
+      "analyzer": "standard_asciifolding"
+    },
+    "subregion_id": {
+      "type": "integer"
+    },
+    "region": {
+      "type": "text",
+      "analyzer": "standard_asciifolding"
+    },
+    "region_id": {
+      "type": "integer"
+    },
+    "province": {
+      "type": "text",
+      "analyzer": "standard_asciifolding"
+    },
+    "province_id": {
+      "type": "integer"
+    },
+    "country": {
+      "type": "keyword"
+    },
+    "country_id": {
+      "type": "integer"
+    }
+  }
+}
