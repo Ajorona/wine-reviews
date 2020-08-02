@@ -8,23 +8,6 @@ WINE_DATA_FILE = 'db/winemag-data-130k-v2.csv'
 wine_data = CSV.parse(File.read(WINE_DATA_FILE), headers: true)
 
 
-csv_to_db_map = {
-  "country": "country",                     # 0
-  "description": "description",             # 1
-  "designation": "designation",             # 2
-  "points": "points",                       # 3
-  "price": "price",                         # 4
-  "province": "province",                   # 5
-  "region_1": "region",                     # 6
-  "region_2": "subregion",                  # 7
-  "taster_name": "taster",                  # 8
-  "taster_twitter_handle": "taster_handle", # 9
-  "row.has_key?(:country)": "name",         # 10
-  "variety": "variety",                     # 11
-  "winery": "winery"                        # 12
-}
-
-
 wine_data.each do |row|
   # 1: To insert a review, title, description, and country are necessary at minimum
   if row.field("title").present? && row.field("description").present? && row.field("country").present? && Country.exists?(name: row.field("country").upcase)
