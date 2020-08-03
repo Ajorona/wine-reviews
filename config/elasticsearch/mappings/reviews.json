@@ -50,32 +50,5 @@
     "variety_id": {
       "type": "integer"
     },
-    "subregion": {
-      "type": "text",
-      "analyzer": "standard_asciifolding"
-    },
-    "subregion_id": {
-      "type": "integer"
-    },
-    "region": {
-      "type": "text",
-      "analyzer": "standard_asciifolding"
-    },
-    "region_id": {
-      "type": "integer"
-    },
-    "province": {
-      "type": "text",
-      "analyzer": "standard_asciifolding"
-    },
-    "province_id": {
-      "type": "integer"
-    },
-    "country": {
-      "type": "keyword"
-    },
-    "country_id": {
-      "type": "integer"
-    }
   }
 }
