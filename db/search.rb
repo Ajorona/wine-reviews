@@ -34,9 +34,7 @@ loop do
 		serialized_data = Search::SearchableReviewSerializer.new(searchable_review).serializable_hash.dig(:data, :attributes)
 		SearchClient.index(id: searchable_review.id, index: "reviews", body: serialized_data)
 		START += 1
-		puts START
     end
-
 	break if START != FINISH
 	START = FINISH
 	FINISH = START + BATCH_SIZE 
