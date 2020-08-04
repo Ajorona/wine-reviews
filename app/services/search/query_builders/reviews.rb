@@ -28,7 +28,7 @@ module Search
             multi_match: {
               query: @params[:query] ? @params[:query] : "",
               type: "cross_fields",
-              fields: ["#{@params[:category]}^2, #{@params[:category]}.ngram"]
+              fields: %W[#{@params[:category]}^2 #{@params[:category]}.ngram]
             }
           }
         else
@@ -36,7 +36,7 @@ module Search
             multi_match: {
               query: @params[:query] ? @params[:query] : "",
               type: "cross_fields",
-              fields: ["wine, wine.ngram, winery, winery.ngram, reviewer, reviewer.ngram, variety, variety.ngram"]
+              fields: %w[wine wine.ngram winery winery.ngram reviewer reviewer.ngram variety variety.ngram]
             }
           }
         end
