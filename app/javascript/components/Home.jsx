@@ -54,7 +54,6 @@ class Home extends Component {
             />
             <SearchTabs
               activeTab={activeTab}
-              updateTabs={this.updateTabs}
             />
           </div>
         </div>

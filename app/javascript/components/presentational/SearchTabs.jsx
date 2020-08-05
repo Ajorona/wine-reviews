@@ -11,9 +11,11 @@ const SearchTabs = ({
       {
         Object.values(CategoryConstants).map((category, i) => {
           const {name, uri} = category;
+          const classes = activeTab === uri ? "tab-active search-tab" : "search-tab";
+          console.log("classes: ", classes);
           return (
             <NavLink
-              className={activeTab === uri ? "active-tab" : "search-tab"}
+              className={classes}
               to={`/${uri}`}
             >
               {name}

@@ -49,15 +49,15 @@
     height: 3em;
     width: $list-width;
 
-    .tab-active {
-      color: $theme_blue;
-    }
-
     .search-tab {
       font-weight: 700;
       font-size: 1.5em;
       color: $theme_grey;
       padding: 0.5em 1em 0 1em;
+    }
+
+    .tab-active {
+      color: $theme_blue !important;
     }
   }
 }
