@@ -11,14 +11,18 @@ class Home extends Component {
 
     this.state = {
       query: '',
-      activeTab: CategoryConstants.HOME.name
+      activeTab: ''
     }
 
-    this.updateTabs = this.updateTabs.bind(this);
     this.updateQuery = this.updateQuery.bind(this);
     this.submitQuery = this.submitQuery.bind(this);
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.setState({activeTab: this.props.location.pathname.substring(1)});
+    }
+  }
 
   updateQuery = (e) => {
     e.preventDefault();
@@ -28,10 +32,6 @@ class Home extends Component {
   submitQuery = (e) => {
     e.preventDefault();
     return null;
-  }
-
-  updateTabs = (active) => {
-    this.setState({activeTab: active})
   }
 
   render() {
@@ -53,6 +53,7 @@ class Home extends Component {
               submitQuery={this.submitQuery}
             />
             <SearchTabs
+              activeTab={activeTab}
               updateTabs={this.updateTabs}
             />
           </div>

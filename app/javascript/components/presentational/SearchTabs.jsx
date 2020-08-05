@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import CategoryConstants from '../../constants/CategoryConstants';
 
 const SearchTabs = ({
-  activeTab, updateTabs
+  activeTab
 }) => {
   return (
     <div className="search-tabs">
@@ -13,8 +13,7 @@ const SearchTabs = ({
           const {name, uri} = category;
           return (
             <NavLink
-              className={activeTab === name ? "active-tab" : "search-tab"}
-              onClick={(name) => updateTabs(name)}
+              className={activeTab === uri ? "active-tab" : "search-tab"}
               to={`/${uri}`}
             >
               {name}
