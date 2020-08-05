@@ -1,15 +1,47 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.page-header {
+  width: 100%; }
+  .page-header .title-box {
+    text-align: center;
+    padding: 20px 0;
+    height: 120px;
+    width: 100%; }
+  .page-header .title {
+    color: #990000;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700; }
+
+.search-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 0.5px solid #999999; }
+  .search-panel .search-form {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    width: 550px;
+    border-radius: 8px;
+    border: #999999 0.5px solid; }
+    .search-panel .search-form .search-text {
+      width: 100%;
+      border: none; }
+    .search-panel .search-form .search-loupe {
+      height: 16px;
+      width: 16px;
+      margin: 0.4em 0.25em 0 0.25em; }
+  .search-panel .search-tabs {
+    margin: 0 auto;
+    height: 3em;
+    width: 550px; }
+    .search-panel .search-tabs .tab-active {
+      color: #14213D; }
+    .search-panel .search-tabs .search-tab {
+      font-weight: 700;
+      font-size: 1.5em;
+      color: #868B8E;
+      padding: 0.5em 1em 0 1em; }
+
+.page-body {
+  width: 100%; }
+
+/*# sourceMappingURL=application.css.map */

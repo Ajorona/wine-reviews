@@ -1,0 +1,3 @@
+project/app/models
+project/app/serializers
+project/app/services
