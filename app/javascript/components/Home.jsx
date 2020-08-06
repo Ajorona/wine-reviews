@@ -35,7 +35,7 @@ class Home extends Component {
   componentDidMount() {
     this.props.fetchResultsAction({
         pageNumber: this.state.page.Page,
-        activeTab: this.state.activeTab,
+        category: this.state.activeTab,
         query: this.state.query
     }).then( result => {} // TBD: Handle pageNumber Update
     );
@@ -90,7 +90,7 @@ class Home extends Component {
         </div>
         <ReviewList
           handleScroll={this.handleScroll}
-          params={{query, activeTab, pageNumber}}
+          params={{query, category: activeTab, pageNumber}}
         />
       </div>
     )
