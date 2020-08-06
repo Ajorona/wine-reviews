@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/taster', to: 'home#index'
   get '/variety', to: 'home#index'
 
-  get '/search', to: 'search#default_review_search'
+  get '/search/', to: 'search#default_review_search'
   get '/search/wine', to: 'search#reviews_by_wine'
   get '/search/winery', to: 'search#reviews_by_winery'
   get '/search/taster', to: 'search#reviews_by_taster'

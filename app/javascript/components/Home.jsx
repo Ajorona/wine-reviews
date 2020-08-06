@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
+import { debounce } from 'lodash';
 
 import SearchBar from './presentational/SearchBar';
 import SearchTabs from './presentational/SearchTabs';
+import ReviewList from './presentational/ReviewList';
 
-import CategoryConstants from '../constants/CategoryConstants';
+import { fetchSearchResultsAction } from '../actions/SearchActions';
+
+import CategoryConstants from "../constants/CategoryConstants";
 
 class Home extends Component {
   constructor(props) {
@@ -11,11 +16,29 @@ class Home extends Component {
 
     this.state = {
       query: '',
-      activeTab: ''
+      activeTab: '',
+      page: {
+        [`${CategoryConstants.HOME.uri}Page`]: 0,
+        [`${CategoryConstants.WINE.uri}Page`]: 0,
+        [`${CategoryConstants.VARIETY.uri}Page`]: 0,
+        [`${CategoryConstants.TASTER.uri}Page`]: 0,
+        [`${CategoryConstants.WINERY.uri}Page`]: 0
+      },
+      loading: true
     }
 
     this.updateQuery = this.updateQuery.bind(this);
     this.submitQuery = this.submitQuery.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchResultsAction({
+        pageNumber: this.state.page.Page,
+        activeTab: this.state.activeTab,
+        query: this.state.query
+    }).then( result => {} // TBD: Handle pageNumber Update
+    );
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,9 +47,16 @@ class Home extends Component {
     }
   }
 
+  handleScroll = params => debounce(e => {
+    const fetch = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight
+    if (fetch) {
+      this.props.fetchResultsAction(params).then( result => {}) // TBD: Handle pageNumber Update
+    }
+  }, 100);
+
   updateQuery = (e) => {
     e.preventDefault();
-    return null;
+    this.setState({query: e.target.value})
   }
 
   submitQuery = (e) => {
@@ -35,7 +65,8 @@ class Home extends Component {
   }
 
   render() {
-    const { query, activeTab } = this.state;
+    const { query, activeTab, page} = this.state;
+    const pageNumber = page[`${activeTab}Page`]
 
     return (
       <div className="container">
@@ -57,12 +88,25 @@ class Home extends Component {
             />
           </div>
         </div>
-        <div className="row page-body">
-
-        </div>
+        <ReviewList
+          handleScroll={this.handleScroll}
+          params={{query, activeTab, pageNumber}}
+        />
       </div>
     )
   }
 }
 
-export default Home;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    results: state.search
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchResultsAction: fetchSearchResultsAction(dispatch)
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

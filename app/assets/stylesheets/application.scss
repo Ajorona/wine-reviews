@@ -28,16 +28,20 @@
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+    padding: 4px;
     width: $list-width;
     border-radius: 8px;
       border: #999999 0.5px solid;
 
     .search-text {
+      display: inline-block;
+      margin-left: 0.25em;
       width: 100%;
       border: none;
     }
 
     .search-loupe {
+      display: inline-block;
       height: 16px;
       width: 16px;
       margin: 0.4em 0.25em 0 0.25em;
@@ -45,6 +49,9 @@
   }
 
   .search-tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 0 auto;
     height: 3em;
     width: $list-width;
@@ -53,7 +60,8 @@
       font-weight: 700;
       font-size: 1.5em;
       color: $theme_grey;
-      padding: 0.5em 1em 0 1em;
+      padding-top: 0.2em;
+      margin: 0 0.5em;
     }
 
     .tab-active {

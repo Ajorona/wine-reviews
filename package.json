@@ -4,15 +4,20 @@
   "dependencies": {
     "@babel/preset-react": "^7.10.4",
     "@rails/webpacker": "5.1.1",
+    "axios": "^0.19.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.5.0",
+    "immutable": "^4.0.0-rc.12",
     "jquery": "^3.5.1",
+    "lodash": "^4.17.19",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.11.0"
