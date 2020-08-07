@@ -14,11 +14,12 @@ class Review < ApplicationRecord
 		results.each do |result|
 			detailed_result = {
 					'review' => Review.find(result['id']),
-					'wine' => STR_TO_MODEL['wine'].find('wine_id')
+					'wine' => STR_TO_MODEL['wine'].find(result['wine_id'])
 			}
 			categories.each do |category|
 				detailed_result[category] = STR_TO_MODEL[category].find(result["#{category}_id"])
 			end
+			detailed_results.append(detailed_result)
 		end
 		return detailed_results
 	end
