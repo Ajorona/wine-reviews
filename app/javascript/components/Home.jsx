@@ -89,6 +89,7 @@ class Home extends Component {
           </div>
         </div>
         <ReviewList
+          results={this.props.results}
           handleScroll={this.handleScroll}
           params={{query, category: activeTab, pageNumber}}
         />

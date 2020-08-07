@@ -18,6 +18,7 @@ export default (state = initialState, action) => {
       const {category, results} = action.payload;
       return state.update(category, existing => {
         existing = existing.update('results', existingResults => existingResults.concat(results));
+        console.log("EXISTING: ", existing.toJS());
         if(results.length < 10) {
           existing.set('endOf', true);
         }

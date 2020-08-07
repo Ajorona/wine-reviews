@@ -1,8 +1,8 @@
 
 
 BATCH_SIZE = 1000
-START = 0
-FINISH = START + BATCH_SIZE
+start = 0
+finish = start + BATCH_SIZE
 
 loop do
 	review_batch = Review
@@ -10,13 +10,13 @@ loop do
 		.joins("LEFT JOIN tasters ON reviews.tasters_id = tasters.id")
 		.joins("LEFT JOIN wineries ON wines.wineries_id = wineries.id")
 		.joins("LEFT JOIN varieties ON wines.varieties_id = varieties.id")
-		.where("reviews.id BETWEEN ? AND ?", START, FINISH)
+		.where("reviews.id BETWEEN ? AND ?", start, finish)
         .select(
-        	"reviews.id as review_id, \
-        	 wines.id as wine_id, wines.name as wine, \
-        	 tasters.id as taster_id, tasters.name as taster_name, \
-        	 wineries.id as winery_id, wineries.name as winery, \
-        	 varieties.id as variety_id, varieties.name as variety"
+					'reviews.id as review_id,
+        	 wines.id as wine_id, wines.name as wine,
+        	 tasters.id as taster_id, tasters.name as taster_name,
+        	 wineries.id as winery_id, wineries.name as winery,
+        	 varieties.id as variety_id, varieties.name as variety'
     	)
 
     review_batch.each do |record|
@@ -33,11 +33,11 @@ loop do
 
 		serialized_data = Search::SearchableReviewSerializer.new(searchable_review).serializable_hash.dig(:data, :attributes)
 		SearchClient.index(id: searchable_review.id, index: "reviews", body: serialized_data)
-		START += 1
+		start += 1
     end
-	break if START != FINISH
-	START = FINISH
-	FINISH = START + BATCH_SIZE 
+	break if review_batch.length < BATCH_SIZE
+	start = finish
+	finish = start + BATCH_SIZE
 end
 
 	

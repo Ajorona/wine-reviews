@@ -2,33 +2,38 @@ class SearchController < ApplicationController
 	DEFAULT_PAGE = 0
 	DEFAULT_PER_PAGE = 10
 
+
 	def default_review_search
 		options = {query: params[:query], size: DEFAULT_PER_PAGE, per_page: DEFAULT_PER_PAGE}
-		reviews = Search::Reviews.search_documents(params: options)
-		render json: {results: reviews}
+		search_results = Search::Reviews.search_documents(params: options)
+		@detailed_results = Review.fetch_review_and_details(search_results, %w[wine winery reviewer variety])
+		render 'index.json.jbuilder'
 	end
 
 	def reviews_by_wine
-		search_by_category("wine", params[:query])
+		default_review_search
 	end
 
 	def reviews_by_variety
-		search_by_category("variety", params[:query])
+		@detailed_results = fetch_detailed_results(params, "variety")
+		render 'index.json.jbuilder'
 	end
 
 	def reviews_by_taster
-		search_by_category("reviewer", params[:query])
+		@detailed_results = fetch_detailed_results(params, "taster")
+		render 'index.json.jbuilder'
 	end
 
 	def reviews_by_winery
-		search_by_category("winery", params[:query])
+		@detailed_results = fetch_detailed_results(params, "winery")
+		render 'index.json.jbuilder'
 	end
 
 	private
 
-	def search_by_category(category, query)
-		options = {category: category,  query: query, size: DEFAULT_PER_PAGE, per_page: DEFAULT_PER_PAGE}
-		reviews = Search::Review.search_documents(params: options)
-		render json: {results: reviews}
+  def fetch_detailed_results(params, category)
+		options = {category: category,  query: params[:query], size: DEFAULT_PER_PAGE, per_page: DEFAULT_PER_PAGE}
+		search_results = Search::Reviews.search_documents(params: options)
+		Review.fetch_review_and_details(search_results, category)
 	end
 end
